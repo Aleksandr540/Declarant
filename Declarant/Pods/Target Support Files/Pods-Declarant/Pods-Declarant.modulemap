@@ -1,0 +1,6 @@
+framework module Pods_Declarant {
+  umbrella header "Pods-Declarant-umbrella.h"
+
+  export *
+  module * { export * }
+}
