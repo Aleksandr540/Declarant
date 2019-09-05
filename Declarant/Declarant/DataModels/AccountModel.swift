@@ -12,7 +12,9 @@ struct AccountModel: Decodable { //"items"
     
     let id: String
     let firstname: String
-    let lastname: String? //  опциональны, тк не факт что они будут в ответе на запрос
+    let lastname: String
     let placeOfWork: String?
     let position: String?
+    let linkPDF: String?
+    
 }
