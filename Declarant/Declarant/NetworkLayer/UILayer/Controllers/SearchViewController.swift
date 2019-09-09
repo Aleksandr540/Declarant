@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameFieldOutlet.delegate = self as? UITextFieldDelegate// 47:11 sels без as
+        nameFieldOutlet.delegate = self 
     }
     @IBAction func searchButtonAction() {
         performSegue(withIdentifier: "showResult", sender: nil)
@@ -33,6 +33,8 @@ class SearchViewController: UIViewController {
         if segue.identifier == "showResult" {
             
             let destination = segue.destination as? SearchResultViewController
+            
+            destination?.nameForSearch = nameFieldOutlet.text ?? ""
             
             let backButton = UIBarButtonItem()
             backButton.title = ""

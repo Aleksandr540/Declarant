@@ -60,6 +60,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="EFC-hc-iWp" id="X1V-bn-bHK"/>
+                <outlet property="pdfIcon" destination="Vmk-OJ-KJc" id="6aD-Wa-th0"/>
+                <outlet property="placeOfWork" destination="L9z-eD-HHw" id="FKS-D1-UK8"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="139.95535714285714"/>
         </tableViewCell>
     </objects>

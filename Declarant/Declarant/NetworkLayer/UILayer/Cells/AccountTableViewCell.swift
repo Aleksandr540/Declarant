@@ -11,13 +11,14 @@ import UIKit
 class AccountTableViewCell: UITableViewCell {
 
     @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var placeOfWorkLabel: UILabel!
     @IBOutlet private var pdfIcon: UIImageView!
+    @IBOutlet private var placeOfWork: UILabel!
+    
     
     func setup(with account: AccountModel) {
-        nameLabel.text = "\(account.firstname) \( account.lastname))"
-        
-        placeOfWorkLabel.text = account.placeOfWork ?? "Неизвестно"
+        nameLabel.text = "\(account.firstname) \( account.lastname)"
+
+        placeOfWork.text = account.placeOfWork ?? "Неизвестно"
         pdfIcon.isHidden = account.linkPDF == nil
     }
     
