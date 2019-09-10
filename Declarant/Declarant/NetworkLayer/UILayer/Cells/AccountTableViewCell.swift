@@ -17,7 +17,6 @@ class AccountTableViewCell: UITableViewCell {
     
     func setup(with account: AccountModel) {
         nameLabel.text = "\(account.firstname) \( account.lastname)"
-
         placeOfWork.text = account.placeOfWork ?? "Неизвестно"
         pdfIcon.isHidden = account.linkPDF == nil
     }

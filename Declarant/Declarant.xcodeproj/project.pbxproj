@@ -19,6 +19,8 @@
 		E916A29522FD4CBD00F7B1E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E916A29322FD4CBD00F7B1E9 /* LaunchScreen.storyboard */; };
 		E916A2A022FD4CBE00F7B1E9 /* DeclarantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E916A29F22FD4CBE00F7B1E9 /* DeclarantTests.swift */; };
 		E916A2AB22FD4CBE00F7B1E9 /* DeclarantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E916A2AA22FD4CBE00F7B1E9 /* DeclarantUITests.swift */; };
+		E922A0AA23265FED005C7736 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E922A0A823265FED005C7736 /* ActivityTableViewCell.swift */; };
+		E922A0AB23265FED005C7736 /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E922A0A923265FED005C7736 /* ActivityTableViewCell.xib */; };
 		E9CB494E230AA04900609DA1 /* AccountTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = E9CB494C230AA04900609DA1 /* AccountTableViewCell.xib */; };
 		E9CB494F230AA04900609DA1 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB494D230AA04900609DA1 /* AccountTableViewCell.swift */; };
 		E9CB4954230AA1F500609DA1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB4953230AA1F500609DA1 /* SearchViewController.swift */; };
@@ -67,6 +69,8 @@
 		E916A2A622FD4CBE00F7B1E9 /* DeclarantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeclarantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E916A2AA22FD4CBE00F7B1E9 /* DeclarantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantUITests.swift; sourceTree = "<group>"; };
 		E916A2AC22FD4CBE00F7B1E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E922A0A823265FED005C7736 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		E922A0A923265FED005C7736 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
 		E9CB494C230AA04900609DA1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		E9CB494D230AA04900609DA1 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		E9CB4953230AA1F500609DA1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 			children = (
 				E9CB494D230AA04900609DA1 /* AccountTableViewCell.swift */,
 				E9CB494C230AA04900609DA1 /* AccountTableViewCell.xib */,
+				E922A0A823265FED005C7736 /* ActivityTableViewCell.swift */,
+				E922A0A923265FED005C7736 /* ActivityTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 			files = (
 				E916A29522FD4CBD00F7B1E9 /* LaunchScreen.storyboard in Resources */,
 				E916A29222FD4CBD00F7B1E9 /* Assets.xcassets in Resources */,
+				E922A0AB23265FED005C7736 /* ActivityTableViewCell.xib in Resources */,
 				E916A29022FD4CB500F7B1E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +464,7 @@
 				E916A28B22FD4CB500F7B1E9 /* AppDelegate.swift in Sources */,
 				E9CB4956230AA21C00609DA1 /* SearchResultViewController.swift in Sources */,
 				E90FFA83230161660009F700 /* AccountModel.swift in Sources */,
+				E922A0AA23265FED005C7736 /* ActivityTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

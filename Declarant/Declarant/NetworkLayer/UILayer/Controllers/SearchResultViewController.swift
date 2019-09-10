@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchResultViewController: UIViewController {
-
+    
     @IBOutlet var tableView: UITableView!
     
     var nameForSearch: String = ""
@@ -25,18 +25,28 @@ class SearchResultViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil),  forCellReuseIdentifier: "AccountTableViewCell")
         
-        makeNetworkRequest(errorHandlwr: nil)
+        tableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil),  forCellReuseIdentifier: "AccountTableViewCell")
+        tableView.register(UINib(nibName: "ActivityTableViewCell", bundle: nil),  forCellReuseIdentifier: "ActivityTableViewCell")
+        
+        makeNetworkRequest {
+            let alert = UIAlertController(title: "Ошибка", message:"По вашему запросу ничего не найдено", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Понятно", style: .cancel, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
-    func makeNetworkRequest(errorHandlwr: (() -> Void)?) {
+    func makeNetworkRequest(errorHandler: (() -> Void)?) {
         if !isLoadingNow {
             isLoadingNow = true
             
@@ -45,7 +55,10 @@ class SearchResultViewController: UIViewController {
                 if let accounts = accounts,
                     let page = page {
                     self.currebtPage = page
+                    self.title = "Найдено: \(page.totalItems)"
                     self.foundAccounts += accounts
+                } else {
+                    errorHandler?()
                 }
                 
             }
@@ -57,21 +70,48 @@ class SearchResultViewController: UIViewController {
 extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if currebtPage == nil {
+            return 2
+        }
+        
+        // (общее кол-во / колв=во элемнтов на странице) ->  округлить в большую сторону
+        if let curremtPage = currebtPage {
+            
+            if let totalItems = Double(curremtPage.totalItems) {
+                let maxPage = (totalItems / Double(curremtPage.batchSize)).rounded(.up)
+                return maxPage > Double(curremtPage.currentPage) ? 2: 1
+            }
+            
+        }
         return 1
     }
     
+    
+   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return foundAccounts.count
+        return section == 0 ? foundAccounts.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell") as? ActivityTableViewCell
+            cell?.activityIndicator.startAnimating()
+            return cell!
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell") as? AccountTableViewCell
-        
         cell?.setup(with: foundAccounts[indexPath.row])
-        
         return cell!
     }
+  
+    func  tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            makeNetworkRequest(errorHandler: nil)
+        }
+    }
     
-   
 }
 
