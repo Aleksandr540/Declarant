@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SearchResultViewController: UIViewController {
     
@@ -31,7 +32,7 @@ class SearchResultViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-
+        
         
         tableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil),  forCellReuseIdentifier: "AccountTableViewCell")
         tableView.register(UINib(nibName: "ActivityTableViewCell", bundle: nil),  forCellReuseIdentifier: "ActivityTableViewCell")
@@ -88,7 +89,7 @@ extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     
-   
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? foundAccounts.count : 1
@@ -106,12 +107,45 @@ extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate
         cell?.setup(with: foundAccounts[indexPath.row])
         return cell!
     }
-  
+    
     func  tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             makeNetworkRequest(errorHandler: nil)
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let account = foundAccounts[indexPath.row]
+        
+        if let pdfLink = account.linkPDF {
+            
+            let actionSheet = UIAlertController(title: "\(account.firstname) \(account.lastname)", message: "Открыть детальную информацию", preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Интернет страница", style: .default, handler: { _ in
+                if let reportURL = URL(string: NetworkLayer.publicString + account.id) {
+                    let safaryVC = SFSafariViewController(url: reportURL)
+                    self.present(safaryVC, animated: true, completion: nil)
+                }
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "PDF", style: .default, handler: { _ in
+                if let reportURL = URL(string: pdfLink) {
+                    let safaryVC = SFSafariViewController(url: reportURL)
+                    self.present(safaryVC, animated: true, completion: nil)
+                }
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+            
+            self.present(actionSheet, animated: true, completion: nil)
+            
+        } else {
+            
+            if let reportURL = URL(string: NetworkLayer.publicString + account.id) {
+                let safaryVC = SFSafariViewController(url: reportURL)
+                self.present(safaryVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
 }
-

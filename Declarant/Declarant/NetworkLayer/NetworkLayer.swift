@@ -14,8 +14,8 @@ typealias JSON = [String : Any]
 class NetworkLayer {
     
     static let apiString =  "https://public-api.nazk.gov.ua/v1/declaration/"
-    
     static let reportString = "https://www.kmu.gov.ua/ua/service/dovidka-pro-vidsutnist-korupcijnih-pravoporushen"
+    static let publicString = "https://public.nazk.gov.ua/declaration/"
     
     static func searchDeclarations(name: String, page: Int = 1, completion: @escaping ([AccountModel]?, PageModel? ) -> Void){
         
